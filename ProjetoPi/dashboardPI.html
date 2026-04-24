@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dashboardPI</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./css/dashboard.css">
+</head>
+
+<header class="header" style="background-color: skyblue; padding: 10px; text-align: center;">
+    <h1>HydraCoffe</h1>
+</header>
+
+<body class="body">
+    <h3 class="text">Dashboard</h3> <br><br>
+
+    <div class="kpi-card text" style="border: 1px solid #ccc; padding: 20px; width: fit-content; border-radius: 8px;">
+        <span style="text-align: center; font-size: x-large; font-weight: bold;">20%</span> <br>
+        da sua plantação está com a umidade abaixo do ideal
+    </div>
+
+    <div class="dashboard-container text" style="position: relative; height:40vh; width:80vw">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        const data = {
+            labels: ['January', 'February', 'March', 'April'],
+            datasets: [{
+                type: 'bar',
+                label: 'Umidade Atual',
+                data: [10, 20, 30, 40],
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.8)'
+            }, {
+                type: 'line',
+                label: 'Meta de Umidade',
+                data: [50, 50, 50, 50],
+                fill: false,
+                borderColor: 'rgb(54, 162, 235)',
+                tension: 0.1 // Suaviza a linha
+            }]
+        };
+
+        const config = {
+            type: 'bar', // Mudado de 'scatter' para 'bar' para suportar o gráfico misto corretamente
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // LINHA ESSENCIAL: Cria a instância do gráfico no canvas
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+</body>
+
+<footer class="header">
+</footer>
+
+</html>
